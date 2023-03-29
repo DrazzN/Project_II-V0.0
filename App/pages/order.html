@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/order-styles.css">
+    <section id="order">
+      <h2>Order Online</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="order">Order</label>
+          <select id="order" name="order" required>
+            <option value="">-- Select --</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Burger">Burger</option>
+            <option value="Fries">Fries</option>
+            <option value="Drink">Drink</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" name="quantity" min="1" required />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="order-success" class="hidden">
+        <p>Your order has been submitted successfully.</p>
+      </div>
+    </section>
+
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>

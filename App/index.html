@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Delivery Site</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Add header content here -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/menu.html">Menu</a></li>
+          <li><a href="pages/order.html">Order</a></li>
+          <li><a href="pages/about.html">About</a></li>
+          <li><a href="pages/Contact.html">Contact</a></li>
+        </ul>
+        <div id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- Add main content here -->
+      <section id="hero">
+        <h1>Welcome to Food Delivery</h1>
+        <p>Order delicious food right to your door</p>
+        <a href="#" class="btn">Order Now</a>
+      </section>
+
+      <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="slider">
+          <img src="images/pizza-model.jpg" alt="Image 1" />
+          <img src="images/burger-model.jpg" alt="Image 2" />
+          <img src="images/drinks-model.jpg" alt="Image 3" />
+          <button class="prev">❮</button>
+      <button class="next">❯</button>
+        </div>
+        <script>
+          const images = document.querySelectorAll(".slider img");
+          const prevButton = document.querySelector(".slider button.prev");
+          const nextButton = document.querySelector(".slider button.next");
+          let currentIndex = 0;
+          images[currentIndex].style.opacity = 1;
+          prevButton.addEventListener("click", function () {
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].style.opacity = 1;
+          });
+          nextButton.addEventListener("click", function () {
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.opacity = 1;
+          });
+        </script>
+      </section>
+
+      <section id="order">
+        <h2>Order Now</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" required />
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required />
+          <label for="order">Order</label>
+          <textarea id="order" name="order" required></textarea>
+          <button type="submit" class="btn">Submit Order</button>
+        </form>
+      </section>
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          We are a food delivery service that is committed to bringing you the
+          best food in town right to your door. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Integer nec odio. Praesent libero.
+        </p>
+        <a href="#" class="btn">Learn More</a>
+      </section>
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <!-- Add footer content here -->
+      <p>© 2023 Food Delivery. All rights reserved.</p>
+    </footer>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

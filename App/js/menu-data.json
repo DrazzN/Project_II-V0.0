@@ -1,0 +1,53 @@
+{
+    "menuData": [
+        {
+            "name": "Pizza",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit at felis ultricies sollicitudin. Donec volutpat mauris tortor, vitae laoreet quam volutpat eu.",
+            "price": "$10",
+            "imgSrc": "../images/pizza-model.jpg",
+            "altText": "Pizza"
+        },
+        {
+            "name": "Classic Burger",
+            "description": "Juicy beef patty with lettuce, tomato, onion, and pickles on a brioche bun.",
+            "price": "8.99",
+            "imgSrc": "https://example.com/images/burger.jpg",
+            "altText": "Burger"
+        },
+        {
+            "name": "Burgera",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit at felis ultricies sollicitudin. Donec volutpat mauris tortor, vitae laoreet quam volutpat eu.",
+            "price": "$8",
+            "imgSrc": "../images/burger-model.jpg",
+            "altText": "Burger"
+        },
+        {
+            "name": "Fries",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit at felis ultricies sollicitudin. Donec volutpat mauris tortor, vitae laoreet quam volutpat eu.",
+            "price": "$5",
+            "imgSrc": "../images/fries-model.jpg",
+            "altText": "Fries"
+        },
+        {
+            "name": "Drink",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit at felis ultricies sollicitudin. Donec volutpat mauris tortor, vitae laoreet quam volutpat eu.",
+            "price": "$2",
+            "imgSrc": "../images/drinks-model.jpg",
+            "altText": "Drink"
+        },        
+        {
+            "name": "Veggie Burger",
+            "description": "A meat-free patty with lettuce, tomato, onion, and pickles on a whole wheat bun.",
+            "price": "7.99",
+            "imgSrc": "https://example.com/images/veggie-burger.jpg",
+            "altText": "Burger"
+        },
+        {
+            "name": "Double Cheeseburger",
+            "description": "Two juicy beef patties with American cheese, lettuce, tomato, onion, and pickles on a sesame seed bun.",
+            "price": "11.99",
+            "imgSrc": "https://example.com/images/double-cheeseburger.jpg",
+            "altText": "Burger"
+        }
+    ]
+}

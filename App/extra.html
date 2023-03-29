@@ -1,0 +1,17 @@
+<section id="menu">
+    <h2>Our Menu</h2>
+    <div class="slider">
+      <img src="images/pizza-model.jpg" alt="Image 1">
+      <img src="images/burger-model.jpg" alt="Image 2">
+      <img src="images/drinks-model.jpg" alt="Image 3">
+    </div>
+    <script>
+      const images = document.querySelectorAll(".slider img");
+      let currentIndex = 0;
+      setInterval(function() {
+        images[currentIndex].style.opacity = 0;
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].style.opacity = 1;
+      }, 3000);
+    </script>
+  </section>
