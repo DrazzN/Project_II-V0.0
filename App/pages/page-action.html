@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Food Items</title>
+  <style>
+    /* Basic styling for the page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #555;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    form {
+      margin: 20px auto;
+      width: 50%;
+    }
+    input[type=text], input[type=number], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Food Items</h1>
+
+  <!-- Display the list of food items in a table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="item-list">
+    </tbody>
+  </table>
+
+  <!-- Add a form for adding and editing food items -->
+  <form id="item-form">
+    <input type="hidden" id="item-id" name="id">
+    <label for="item-name">Name</label>
+    <input type="text" id="item-name" name="name" required>
+    <label for="item-description">Description</label>
+    <textarea id="item-description" name="description"></textarea>
+    <label for="item-price">Price</label>
+    <input type="number" id="item-price" name="price" min="0" step="0.01" required>
+    <label for="item-category">Category</label>
+    <select id="item-category" name="category" required>
+      <option value="">-- Select a category --</option>
+      <option value="Appetizers">Appetizers</option>
+      <option value="Entrees">Entrees</option>
+      <option value="Desserts">Desserts</option>
+      <option value="Beverages">Beverages</option>
+    </select>
+    <label for="item-image-url">Image URL</label>
+    <input type="text" id="item-image-url" name="image_url">
+    <input type="submit" value="Save">
+  </form>
+
+  <!-- Include the jQuery library and the JavaScript code for interacting with the API -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    // Function to populate the table with food items from the API
+    function populateItemList() {
+      $.ajax({
+        url: "api/items.php",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          var itemList = "";
+          $.each(data, function(index, item) {
+            itemList += "<tr>";
+            itemList += "<td>" + item.id + "</td>";
+            itemList += "<td>" + item.name + "</td>";
+            itemList += "<td>" + item.description + "</td>";
+            itemList += "<td>$" + item.price + "</td>";
+            itemList += "<td>" + item.category + "</td>";
+            itemList += "<td>";
+            itemList += "<button class='edit-item' data-id='" + item.id + "'>Edit</button>";
+            itemList += "<button class='delete-item' data-id='" + item.id + "'>Delete</button>";
+            itemList += "</td>";
+            itemList += "</tr>";
+          });
+          $("#item-list").html(itemList);
+        }
+      });
+    }
+
+    // Function to clear the form inputs
+    function clearItemForm() {
+      $("#item-id").val("");
+      $("#item-name").val("");
+      $("#item-description").val("");
+      $("#item-price").val("");
+      $("#item-category").val("");
+      $("#item-image-url").val("");
+    }
+
+    // Function to handle form submissions for adding and editing food items
+    $("#item-form").submit(function(event) {
+      event.preventDefault();
+      var id = $("#item-id").val();
+      var name = $("#item-name").val();
+      var description = $("#item-description").val();
+      var price = $("#item-price").val();
+      var category = $("#item-category").val();
+      var imageUrl = $("#item-image-url").val();
+      var url = "api/items.php";
+      var method = "POST";
+      if (id) {
+        url += "?id=" + id;
+        method = "PUT";
+      }
+      $.ajax({
+        url: url,
+        type: method,
+        data: { name: name, description: description, price: price, category: category, image_url: imageUrl },
+        success: function() {
+          populateItemList();
+          clearItemForm();
+        }
+      });
+    });
+
+    // Function to handle button clicks for editing and deleting food items
+    $(document).on("click", ".edit-item", function() {
+      var id = $(this).data("id");
+      $.ajax({
+        url: "api/items.php?id=" + id,
+        type: "GET",
+        dataType: "json",
+        success: function(item) {
+          $("#item-id").val(item.id);
+          $("#item-name").val(item.name);
+          $("#item-description").val(item.description);
+          $("#item-price").val(item.price);
+          $("#item-category").val(item.category);
+          $("#item-image-url").val(item.image_url);
+        }
+      });
+    });
+    $(document).on("click", ".delete-item", function() {
+      var id = $(this).data("id");
+      $.ajax({
+        url: "api/items.php?id=" + id,
+        type: "DELETE",
+        success: function() {
+          populateItemList();
+        }
+      });
+    });
+
+    // Call the function to populate the table with food items when the page loads
+    $(document).ready(function() {
+      populateItemList();
+    });
+  </script>
+</body>
+</html>
